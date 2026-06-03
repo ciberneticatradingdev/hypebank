@@ -139,16 +139,16 @@ export default function TokenPage() {
           <div className="bg-[#0f4a42]/60 rounded-xl border border-[#2a6b5a] p-6 flex flex-col justify-between min-h-[280px] backdrop-blur-xl">
             <div className="flex flex-col items-center gap-2">
               <Image
-                src="/hypebank-logo.png"
+                src="/hypebank-logo.jpg"
                 alt="HYPEBANK"
                 width={200}
                 height={200}
                 className="rounded-xl"
               />
               <h1 className="text-5xl font-black leading-none text-white mt-1 tracking-wider">
->HYPEBANK<
+                HYPEBANK
               </h1>
-              <p className="text-sm font-black text-white/40 tracking-widest">DEPOSIT TODAY. INVEST IN TOMORROW.</p>
+              <p className="text-sm font-black text-white/40 tracking-widest">DEPOSIT TODAY. EARN TOMORROW.</p>
             </div>
             <div className="space-y-3 mt-4">
               <div className="inline-flex items-center gap-2 bg-[#78d1bd]/10 text-[#78d1bd] text-xs font-bold px-3 py-1.5 rounded-full border border-[#78d1bd]/30">
@@ -291,7 +291,7 @@ export default function TokenPage() {
         <div className="max-w-7xl mx-auto px-4 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <Image
-              src="/hypebank-logo.png"
+              src="/hypebank-logo.jpg"
               alt="HYPEBANK"
               width={24}
               height={24}
