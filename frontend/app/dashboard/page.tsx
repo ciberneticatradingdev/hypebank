@@ -157,7 +157,7 @@ const fmtDate = (s: string | null | undefined) =>
 
 const distStatusBadge = (status: string) => {
   const s = status?.toLowerCase()
-  if (s === "completed") return { cls: "bg-green-900/30 text-green-400 border border-green-500/20", label: "DONE" }
+  if (s === "completed") return { cls: "bg-green-900/30 text-[#78d1bd] border border-green-500/20", label: "DONE" }
   if (s === "pending")   return { cls: "bg-yellow-900/20 text-yellow-400 border border-yellow-500/20", label: "PENDING" }
   if (s === "processing")return { cls: "bg-yellow-900/20 text-yellow-400 border border-yellow-500/20", label: "PROCESSING" }
   return { cls: "bg-red-900/20 text-red-400 border border-red-500/20", label: status?.toUpperCase() ?? "—" }
@@ -166,7 +166,7 @@ const distStatusBadge = (status: string) => {
 // ── Skeleton ───────────────────────────────────────────────────────────────────
 
 function Sk({ className = "" }: { className?: string }) {
-  return <div className={`bg-white/10 animate-pulse rounded ${className}`} />
+  return <div className={`bg-[#2a6b5a] animate-pulse rounded ${className}`} />
 }
 
 // ── Main Component ─────────────────────────────────────────────────────────────
@@ -424,22 +424,22 @@ export default function DashboardPage() {
   // ── Render ────────────────────────────────────────────────────────────────────
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-[#072722]">
 
       {/* ── Header ────────────────────────────────────────────────────────────── */}
-      <header className="border-b border-white/10 bg-black sticky top-0 z-50 ">
+      <header className="border-b border-[#2a6b5a] bg-[#072722] sticky top-0 z-50 ">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <nav className="hidden sm:flex items-center gap-1">
             <a
               href="/"
-              className="flex items-center gap-1.5 px-3 py-1.5 text-white/50 font-bold text-sm hover:text-white hover:bg-[#0A0A0A]/60 rounded-lg transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 text-[#7fa89b] font-bold text-sm hover:text-white hover:bg-[#0A0A0A]/60 rounded-lg transition-colors"
             >
               <Home className="w-4 h-4" />
               HOME
             </a>
             <a
               href="/dashboard"
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-white text-white font-bold text-sm rounded-lg hover:bg-white/90 transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-white text-white font-bold text-sm rounded-lg hover:bg-[#78d1bd]/90 transition-colors"
             >
               <LayoutDashboard className="w-4 h-4" />
               DASHBOARD
@@ -448,7 +448,7 @@ export default function DashboardPage() {
           <div className="flex items-center gap-2">
             <button
               onClick={() => { fetchCoreData(true); fetchHolders() }}
-              className="flex items-center gap-1.5 px-2 py-2 text-white/40 hover:text-white hover:bg-[#0A0A0A]/60 rounded-lg transition-colors"
+              className="flex items-center gap-1.5 px-2 py-2 text-[#7fa89b] hover:text-white hover:bg-[#0A0A0A]/60 rounded-lg transition-colors"
               title="Refresh data"
             >
               <RefreshCw className={`w-4 h-4 ${refreshing ? "animate-spin" : ""}`} />
@@ -467,7 +467,7 @@ export default function DashboardPage() {
                 href={config.twitterUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-9 h-9 bg-[#0A0A0A]/60 text-white/50 hover:bg-[#0A0A0A] hover:text-white rounded-lg transition-colors"
+                className="flex items-center justify-center w-9 h-9 bg-[#0A0A0A]/60 text-[#7fa89b] hover:bg-[#0A0A0A] hover:text-white rounded-lg transition-colors"
                 aria-label={`Follow ${config.tokenName} on X`}
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -478,7 +478,7 @@ export default function DashboardPage() {
       </header>
 
       {/* ── Tab Bar ───────────────────────────────────────────────────────────── */}
-      <div className="bg-[#0A0A0A] border-b border-white/10">
+      <div className="bg-[#0A0A0A] border-b border-[#2a6b5a]">
         <div className="max-w-7xl mx-auto px-4 flex items-center gap-1 py-2">
           {(
             [
@@ -492,8 +492,8 @@ export default function DashboardPage() {
               onClick={() => setTab(id)}
               className={`flex items-center gap-2 px-4 py-2 font-black text-sm rounded-lg transition-colors ${
                 tab === id
-                  ? "bg-white/10 text-white  border border-white/20"
-                  : "text-white/50 hover:text-white hover:bg-[#0A0A0A]"
+                  ? "bg-[#2a6b5a] text-white  border border-white/20"
+                  : "text-[#7fa89b] hover:text-white hover:bg-[#0A0A0A]"
               }`}
             >
               <Icon className="w-4 h-4" />
@@ -503,7 +503,7 @@ export default function DashboardPage() {
           {/* Live indicator */}
           <div className="ml-auto flex items-center gap-2 pr-1">
             <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-            <span className="text-xs font-bold text-emerald-400 hidden sm:inline">LIVE · AUTO-REFRESH 30s</span>
+            <span className="text-xs font-bold text-[#78d1bd] hidden sm:inline">LIVE · AUTO-REFRESH 30s</span>
           </div>
         </div>
       </div>
@@ -520,10 +520,10 @@ export default function DashboardPage() {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
 
               {/* Total Claimed */}
-              <div className="bg-[#0A0A0A] rounded-xl border border-white/10 p-4 ">
+              <div className="bg-[#0A0A0A] rounded-xl border border-[#2a6b5a] p-4 ">
                 <div className="flex items-center gap-2 mb-3">
-                  <Gem className="w-4 h-4 text-white/30" />
-                  <p className="text-xs font-bold text-white/30">TOTAL CLAIMED</p>
+                  <Gem className="w-4 h-4 text-[#7fa89b]/60" />
+                  <p className="text-xs font-bold text-[#7fa89b]/60">TOTAL CLAIMED</p>
                 </div>
                 {loading ? (
                   <Sk className="h-9 w-3/4 mb-1" />
@@ -532,14 +532,14 @@ export default function DashboardPage() {
                     {fmtSol(stats?.totalClaimedSol)}
                   </p>
                 )}
-                <p className="text-xs text-white/40 mt-1">SOL</p>
+                <p className="text-xs text-[#7fa89b] mt-1">SOL</p>
               </div>
 
               {/* Total Distributed */}
-              <div className="bg-[#0A0A0A] rounded-xl border border-white/10 p-4 ">
+              <div className="bg-[#0A0A0A] rounded-xl border border-[#2a6b5a] p-4 ">
                 <div className="flex items-center gap-2 mb-3">
-                  <TrendingUp className="w-4 h-4 text-white/30" />
-                  <p className="text-xs font-bold text-white/30">TOTAL DISTRIBUTED</p>
+                  <TrendingUp className="w-4 h-4 text-[#7fa89b]/60" />
+                  <p className="text-xs font-bold text-[#7fa89b]/60">TOTAL DISTRIBUTED</p>
                 </div>
                 {loading ? (
                   <Sk className="h-9 w-3/4 mb-1" />
@@ -548,14 +548,14 @@ export default function DashboardPage() {
                     {fmtSol(stats?.totalDistributed)}
                   </p>
                 )}
-                <p className="text-xs text-white/40 mt-1">$CUM</p>
+                <p className="text-xs text-[#7fa89b] mt-1">HYPE</p>
               </div>
 
               {/* Total Rounds */}
-              <div className="bg-[#0A0A0A] rounded-xl border border-white/10 p-4 ">
+              <div className="bg-[#0A0A0A] rounded-xl border border-[#2a6b5a] p-4 ">
                 <div className="flex items-center gap-2 mb-3">
-                  <Repeat className="w-4 h-4 text-white/40" />
-                  <p className="text-xs font-bold text-white/40">TOTAL ROUNDS</p>
+                  <Repeat className="w-4 h-4 text-[#7fa89b]" />
+                  <p className="text-xs font-bold text-[#7fa89b]">TOTAL ROUNDS</p>
                 </div>
                 {loading ? (
                   <Sk className="h-9 w-1/2 mb-1" />
@@ -564,14 +564,14 @@ export default function DashboardPage() {
                     {fmtNum(stats?.totalRounds)}
                   </p>
                 )}
-                <p className="text-xs text-white/40 mt-1">COMPLETED</p>
+                <p className="text-xs text-[#7fa89b] mt-1">COMPLETED</p>
               </div>
 
               {/* Avg Per Round */}
-              <div className="bg-[#0A0A0A] rounded-xl border border-white/10 p-4 ">
+              <div className="bg-[#0A0A0A] rounded-xl border border-[#2a6b5a] p-4 ">
                 <div className="flex items-center gap-2 mb-3">
-                  <BarChart2 className="w-4 h-4 text-white/30" />
-                  <p className="text-xs font-bold text-white/30">AVG PER ROUND</p>
+                  <BarChart2 className="w-4 h-4 text-[#7fa89b]/60" />
+                  <p className="text-xs font-bold text-[#7fa89b]/60">AVG PER ROUND</p>
                 </div>
                 {loading ? (
                   <Sk className="h-9 w-3/4 mb-1" />
@@ -580,7 +580,7 @@ export default function DashboardPage() {
                     {fmtSol(stats?.avgPerRound)}
                   </p>
                 )}
-                <p className="text-xs text-white/40 mt-1">$CUM / ROUND</p>
+                <p className="text-xs text-[#7fa89b] mt-1">HYPE / ROUND</p>
               </div>
             </div>
 
@@ -588,37 +588,37 @@ export default function DashboardPage() {
             <div className="grid md:grid-cols-2 gap-4">
 
               {/* Distribution Status */}
-              <div className="bg-[#0A0A0A] rounded-xl border border-white/10 p-6 ">
-                <p className="text-xs font-bold text-white/30 mb-4 uppercase tracking-wide">DISTRIBUTION STATUS</p>
+              <div className="bg-[#0A0A0A] rounded-xl border border-[#2a6b5a] p-6 ">
+                <p className="text-xs font-bold text-[#7fa89b]/60 mb-4 uppercase tracking-wide">DISTRIBUTION STATUS</p>
                 <div className="flex items-center gap-3 mb-5">
-                  <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse flex-shrink-0" />
+                  <span className="w-3 h-3 bg-[#78d1bd] rounded-full animate-pulse flex-shrink-0" />
                   <span className="font-black text-lg text-white leading-tight">
                     ACTIVE — AUTO-DISTRIBUTING
                   </span>
                 </div>
                 <div className="space-y-3 mb-4">
                   <div>
-                    <p className="text-xs font-bold text-white/40 mb-1">LAST DISTRIBUTION</p>
+                    <p className="text-xs font-bold text-[#7fa89b] mb-1">LAST DISTRIBUTION</p>
                     <p className="font-mono text-sm font-bold text-white">
                       {loading ? "—" : fmtDate(stats?.lastDistributionAt)}
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-white/40 mb-1">LAST CLAIM</p>
+                    <p className="text-xs font-bold text-[#7fa89b] mb-1">LAST CLAIM</p>
                     <p className="font-mono text-sm font-bold text-white">
                       {loading ? "—" : fmtDate(stats?.lastClaimAt)}
                     </p>
                   </div>
                 </div>
-                <div className="bg-[#0A0A0A] border border-white/10 rounded-lg p-2">
-                  <p className="text-xs font-bold text-white/40 mb-0.5">TOKEN MINT</p>
+                <div className="bg-[#0A0A0A] border border-[#2a6b5a] rounded-lg p-2">
+                  <p className="text-xs font-bold text-[#7fa89b] mb-0.5">TOKEN MINT</p>
                   <p className="font-mono text-xs text-white break-all">{CONTRACT}</p>
                 </div>
               </div>
 
               {/* Stats summary */}
-              <div className="bg-[#0A0A0A] rounded-xl border border-white/10 p-6 ">
-                <p className="text-xs font-bold text-white/30 mb-4 uppercase tracking-wide">HOLDER STATS</p>
+              <div className="bg-[#0A0A0A] rounded-xl border border-[#2a6b5a] p-6 ">
+                <p className="text-xs font-bold text-[#7fa89b]/60 mb-4 uppercase tracking-wide">HOLDER STATS</p>
                 {loading ? (
                   <div className="space-y-3">
                     <Sk className="h-6 w-2/3" />
@@ -628,26 +628,26 @@ export default function DashboardPage() {
                   </div>
                 ) : (
                   <div className="space-y-4">
-                    <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                      <span className="text-xs text-white/40 font-bold">CURRENT HOLDERS</span>
+                    <div className="flex items-center justify-between border-b border-[#2a6b5a] pb-3">
+                      <span className="text-xs text-[#7fa89b] font-bold">CURRENT HOLDERS</span>
                       <span className="font-black text-white text-xl">
                         {fmtNum(stats?.currentHolders)}
                       </span>
                     </div>
-                    <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                      <span className="text-xs text-white/40 font-bold">QUALIFIED HOLDERS</span>
-                      <span className="font-black text-white/40 text-xl">
+                    <div className="flex items-center justify-between border-b border-[#2a6b5a] pb-3">
+                      <span className="text-xs text-[#7fa89b] font-bold">QUALIFIED HOLDERS</span>
+                      <span className="font-black text-[#7fa89b] text-xl">
                         {fmtNum(stats?.qualifiedHolders)}
                       </span>
                     </div>
-                    <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                      <span className="text-xs text-white/40 font-bold">TOTAL CLAIMS</span>
+                    <div className="flex items-center justify-between border-b border-[#2a6b5a] pb-3">
+                      <span className="text-xs text-[#7fa89b] font-bold">TOTAL CLAIMS</span>
                       <span className="font-black text-white text-xl">
                         {fmtNum(stats?.totalClaims)}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-white/40 font-bold">TOTAL ROUNDS</span>
+                      <span className="text-xs text-[#7fa89b] font-bold">TOTAL ROUNDS</span>
                       <span className="font-black text-white text-xl">
                         {fmtNum(stats?.totalRounds)}
                       </span>
@@ -658,21 +658,21 @@ export default function DashboardPage() {
             </div>
 
             {/* 💎 Diamond Hands Vault */}
-            <div className="bg-[#0A0A0A] rounded-xl border border-white/10 overflow-hidden">
-              <div className="px-4 py-3 border-b border-white/10 flex items-center gap-2">
+            <div className="bg-[#0A0A0A] rounded-xl border border-[#2a6b5a] overflow-hidden">
+              <div className="px-4 py-3 border-b border-[#2a6b5a] flex items-center gap-2">
                 <Diamond className="w-4 h-4 text-cyan-400" />
                 <h3 className="font-black text-white text-sm">💎 DIAMOND HANDS VAULT</h3>
-                <span className="ml-auto text-xs font-bold text-white/30">1H CYCLE</span>
+                <span className="ml-auto text-xs font-bold text-[#7fa89b]/60">1H CYCLE</span>
               </div>
 
               <div className="p-4 space-y-4">
                 {/* Top stats row */}
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                   {/* Accumulated */}
-                  <div className="bg-black rounded-lg border border-white/10 p-4">
+                  <div className="bg-[#072722] rounded-lg border border-[#2a6b5a] p-4">
                     <div className="flex items-center gap-2 mb-2">
                       <Shield className="w-3.5 h-3.5 text-cyan-400/50" />
-                      <p className="text-xs font-bold text-white/30">ACCUMULATED</p>
+                      <p className="text-xs font-bold text-[#7fa89b]/60">ACCUMULATED</p>
                     </div>
                     {!diamondData ? (
                       <Sk className="h-8 w-3/4" />
@@ -681,14 +681,14 @@ export default function DashboardPage() {
                         {fmtSol(diamondData.accumulated)}
                       </p>
                     )}
-                    <p className="text-xs text-white/40 mt-1">$CUM PENDING</p>
+                    <p className="text-xs text-[#7fa89b] mt-1">HYPE PENDING</p>
                   </div>
 
                   {/* Countdown */}
-                  <div className="bg-black rounded-lg border border-white/10 p-4">
+                  <div className="bg-[#072722] rounded-lg border border-[#2a6b5a] p-4">
                     <div className="flex items-center gap-2 mb-2">
-                      <Timer className="w-3.5 h-3.5 text-white/30" />
-                      <p className="text-xs font-bold text-white/30">NEXT DROP</p>
+                      <Timer className="w-3.5 h-3.5 text-[#7fa89b]/60" />
+                      <p className="text-xs font-bold text-[#7fa89b]/60">NEXT DROP</p>
                     </div>
                     {!diamondData ? (
                       <Sk className="h-8 w-3/4" />
@@ -702,31 +702,31 @@ export default function DashboardPage() {
                         })()}
                       </p>
                     )}
-                    <p className="text-xs text-white/40 mt-1">MIN:SEC</p>
+                    <p className="text-xs text-[#7fa89b] mt-1">MIN:SEC</p>
                   </div>
 
                   {/* Diamond Holders */}
-                  <div className="bg-black rounded-lg border border-white/10 p-4">
+                  <div className="bg-[#072722] rounded-lg border border-[#2a6b5a] p-4">
                     <div className="flex items-center gap-2 mb-2">
                       <Diamond className="w-3.5 h-3.5 text-cyan-400/50" />
-                      <p className="text-xs font-bold text-white/30">💎 HOLDERS</p>
+                      <p className="text-xs font-bold text-[#7fa89b]/60">💎 HOLDERS</p>
                     </div>
                     {!diamondData ? (
                       <Sk className="h-8 w-1/2" />
                     ) : (
                       <p className="text-2xl font-black text-white leading-none">
                         {fmtNum(diamondData.qualifiedHolders)}
-                        <span className="text-sm font-bold text-white/30 ml-1">/ {fmtNum(diamondData.totalHolders)}</span>
+                        <span className="text-sm font-bold text-[#7fa89b]/60 ml-1">/ {fmtNum(diamondData.totalHolders)}</span>
                       </p>
                     )}
-                    <p className="text-xs text-white/40 mt-1">QUALIFIED / TOTAL</p>
+                    <p className="text-xs text-[#7fa89b] mt-1">QUALIFIED / TOTAL</p>
                   </div>
 
                   {/* Total Distributed */}
-                  <div className="bg-black rounded-lg border border-white/10 p-4">
+                  <div className="bg-[#072722] rounded-lg border border-[#2a6b5a] p-4">
                     <div className="flex items-center gap-2 mb-2">
-                      <TrendingUp className="w-3.5 h-3.5 text-white/30" />
-                      <p className="text-xs font-bold text-white/30">TOTAL 💎 DISTRIBUTED</p>
+                      <TrendingUp className="w-3.5 h-3.5 text-[#7fa89b]/60" />
+                      <p className="text-xs font-bold text-[#7fa89b]/60">TOTAL 💎 DISTRIBUTED</p>
                     </div>
                     {!diamondData ? (
                       <Sk className="h-8 w-3/4" />
@@ -735,7 +735,7 @@ export default function DashboardPage() {
                         {fmtSol(diamondData.totalDistributed)}
                       </p>
                     )}
-                    <p className="text-xs text-white/40 mt-1">$CUM · {diamondData ? fmtNum(diamondData.totalRounds) : "—"} ROUNDS</p>
+                    <p className="text-xs text-[#7fa89b] mt-1">HYPE · {diamondData ? fmtNum(diamondData.totalRounds) : "—"} ROUNDS</p>
                   </div>
                 </div>
 
@@ -743,12 +743,12 @@ export default function DashboardPage() {
                 {diamondData && diamondData.totalHolders > 0 && (
                   <div>
                     <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-xs font-bold text-white/40">DIAMOND HAND RATE</span>
+                      <span className="text-xs font-bold text-[#7fa89b]">DIAMOND HAND RATE</span>
                       <span className="text-xs font-black text-cyan-400">
                         {((diamondData.qualifiedHolders / diamondData.totalHolders) * 100).toFixed(1)}%
                       </span>
                     </div>
-                    <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
+                    <div className="w-full h-2 bg-[#2a6b5a] rounded-full overflow-hidden">
                       <div
                         className="h-full bg-gradient-to-r from-cyan-500 to-cyan-300 rounded-full transition-all duration-500"
                         style={{ width: `${Math.min(100, (diamondData.qualifiedHolders / diamondData.totalHolders) * 100)}%` }}
@@ -760,15 +760,15 @@ export default function DashboardPage() {
                 {/* Recent Diamond Distributions table */}
                 {diamondData && diamondData.recentDistributions.length > 0 && (
                   <div>
-                    <p className="text-xs font-bold text-white/30 mb-2 uppercase tracking-wide">RECENT 💎 DISTRIBUTIONS</p>
+                    <p className="text-xs font-bold text-[#7fa89b]/60 mb-2 uppercase tracking-wide">RECENT 💎 DISTRIBUTIONS</p>
                     <div className="overflow-x-auto">
                       <table className="w-full min-w-[500px]">
                         <thead>
-                          <tr className="border-b border-white/10">
+                          <tr className="border-b border-[#2a6b5a]">
                             {["ID", "DATE", "AMOUNT", "💎 HOLDERS", "STATUS"].map((h, i) => (
                               <th
                                 key={h}
-                                className={`text-xs font-bold text-white/40 px-3 py-2 ${
+                                className={`text-xs font-bold text-[#7fa89b] px-3 py-2 ${
                                   i >= 2 ? "text-right" : "text-left"
                                 } ${i === 4 ? "text-center" : ""}`}
                               >
@@ -781,13 +781,13 @@ export default function DashboardPage() {
                           {diamondData.recentDistributions.map((d) => {
                             const badge = distStatusBadge(d.status)
                             return (
-                              <tr key={d.id} className="border-b border-white/5 hover:bg-black/50 transition-colors">
+                              <tr key={d.id} className="border-b border-[#2a6b5a]/50 hover:bg-[#072722]/50 transition-colors">
                                 <td className="px-3 py-2.5 font-mono text-sm text-white font-bold">#{d.id}</td>
-                                <td className="px-3 py-2.5 text-xs text-white/40">{fmtDate(d.createdAt)}</td>
+                                <td className="px-3 py-2.5 text-xs text-[#7fa89b]">{fmtDate(d.createdAt)}</td>
                                 <td className="px-3 py-2.5 text-right font-mono text-sm text-cyan-400">
                                   {fmtSol(d.totalAmountTokens)}
                                 </td>
-                                <td className="px-3 py-2.5 text-right font-mono text-sm text-white/40">
+                                <td className="px-3 py-2.5 text-right font-mono text-sm text-[#7fa89b]">
                                   {d.holderCount}
                                 </td>
                                 <td className="px-3 py-2.5 text-center">
@@ -807,12 +807,12 @@ export default function DashboardPage() {
             </div>
 
             {/* Recent Distributions preview */}
-            <div className="bg-[#0A0A0A] rounded-xl border border-white/10 overflow-hidden ">
-              <div className="flex items-center justify-between px-4 py-3 border-b border-white/10">
+            <div className="bg-[#0A0A0A] rounded-xl border border-[#2a6b5a] overflow-hidden ">
+              <div className="flex items-center justify-between px-4 py-3 border-b border-[#2a6b5a]">
                 <h3 className="font-black text-white text-sm">RECENT DISTRIBUTIONS</h3>
                 <button
                   onClick={() => setTab("history")}
-                  className="text-xs font-bold text-white/40 hover:text-white transition-colors"
+                  className="text-xs font-bold text-[#7fa89b] hover:text-white transition-colors"
                 >
                   VIEW ALL →
                 </button>
@@ -820,11 +820,11 @@ export default function DashboardPage() {
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[500px]">
                   <thead>
-                    <tr className="border-b border-white/10 bg-[#0A0A0A]">
+                    <tr className="border-b border-[#2a6b5a] bg-[#0A0A0A]">
                       {["ID", "DATE", "DISTRIBUTED", "HOLDERS", "STATUS"].map((h, i) => (
                         <th
                           key={h}
-                          className={`text-xs font-bold text-white/40 px-4 py-2.5 ${
+                          className={`text-xs font-bold text-[#7fa89b] px-4 py-2.5 ${
                             i >= 2 ? "text-right" : "text-left"
                           } ${i === 4 ? "text-center" : ""}`}
                         >
@@ -836,7 +836,7 @@ export default function DashboardPage() {
                   <tbody>
                     {loading || loadingDist
                       ? Array.from({ length: 5 }).map((_, i) => (
-                          <tr key={i} className="border-b border-white/5">
+                          <tr key={i} className="border-b border-[#2a6b5a]/50">
                             <td className="px-4 py-3"><Sk className="h-4 w-10" /></td>
                             <td className="px-4 py-3"><Sk className="h-4 w-32" /></td>
                             <td className="px-4 py-3"><Sk className="h-4 w-20 ml-auto" /></td>
@@ -849,18 +849,18 @@ export default function DashboardPage() {
                           return (
                             <tr
                               key={d.id}
-                              className="border-b border-white/5 hover:bg-[#0A0A0A] transition-colors"
+                              className="border-b border-[#2a6b5a]/50 hover:bg-[#0A0A0A] transition-colors"
                             >
                               <td className="px-4 py-3 font-mono text-sm text-white font-bold">
                                 #{d.id}
                               </td>
-                              <td className="px-4 py-3 text-xs text-white/40">
+                              <td className="px-4 py-3 text-xs text-[#7fa89b]">
                                 {fmtDate(d.createdAt)}
                               </td>
                               <td className="px-4 py-3 text-right font-mono text-sm text-white">
                                 ${fmtSol(d.totalAmountSol)}
                               </td>
-                              <td className="px-4 py-3 text-right font-mono text-sm text-white/40">
+                              <td className="px-4 py-3 text-right font-mono text-sm text-[#7fa89b]">
                                 {d.holderCount}
                               </td>
                               <td className="px-4 py-3 text-center">
@@ -886,8 +886,8 @@ export default function DashboardPage() {
 
             {/* Summary cards */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="bg-[#0A0A0A] rounded-xl border border-white/10 p-4 ">
-                <p className="text-xs font-bold text-white/40 mb-2">TOTAL HOLDERS</p>
+              <div className="bg-[#0A0A0A] rounded-xl border border-[#2a6b5a] p-4 ">
+                <p className="text-xs font-bold text-[#7fa89b] mb-2">TOTAL HOLDERS</p>
                 {loading ? (
                   <Sk className="h-9 w-1/2" />
                 ) : (
@@ -896,8 +896,8 @@ export default function DashboardPage() {
                   </p>
                 )}
               </div>
-              <div className="bg-[#0A0A0A] rounded-xl border border-white/10 p-4 ">
-                <p className="text-xs font-bold text-white/30 mb-2">QUALIFIED</p>
+              <div className="bg-[#0A0A0A] rounded-xl border border-[#2a6b5a] p-4 ">
+                <p className="text-xs font-bold text-[#7fa89b]/60 mb-2">QUALIFIED</p>
                 {loading ? (
                   <Sk className="h-9 w-1/2" />
                 ) : (
@@ -906,8 +906,8 @@ export default function DashboardPage() {
                   </p>
                 )}
               </div>
-              <div className="bg-[#0A0A0A] rounded-xl border border-white/10 p-4 ">
-                <p className="text-xs font-bold text-white/40 mb-2">TOTAL CLAIMS</p>
+              <div className="bg-[#0A0A0A] rounded-xl border border-[#2a6b5a] p-4 ">
+                <p className="text-xs font-bold text-[#7fa89b] mb-2">TOTAL CLAIMS</p>
                 {loading ? (
                   <Sk className="h-9 w-1/2" />
                 ) : (
@@ -916,8 +916,8 @@ export default function DashboardPage() {
                   </p>
                 )}
               </div>
-              <div className="bg-[#0A0A0A] rounded-xl border border-white/10 p-4 ">
-                <p className="text-xs font-bold text-white/30 mb-2">TOTAL SUPPLY</p>
+              <div className="bg-[#0A0A0A] rounded-xl border border-[#2a6b5a] p-4 ">
+                <p className="text-xs font-bold text-[#7fa89b]/60 mb-2">TOTAL SUPPLY</p>
                 {!holdersData ? (
                   <Sk className="h-9 w-1/2" />
                 ) : (
@@ -931,27 +931,27 @@ export default function DashboardPage() {
             </div>
 
             {/* Holders table */}
-            <div className="bg-[#0A0A0A] rounded-xl border border-white/10 overflow-hidden ">
-              <div className="px-4 py-3 border-b border-white/10">
+            <div className="bg-[#0A0A0A] rounded-xl border border-[#2a6b5a] overflow-hidden ">
+              <div className="px-4 py-3 border-b border-[#2a6b5a]">
                 <h3 className="font-black text-white text-sm">HOLDER LEADERBOARD</h3>
-                <p className="text-xs text-white/40 mt-0.5">
+                <p className="text-xs text-[#7fa89b] mt-0.5">
                   Click a wallet address to copy · Snapshot updated periodically
                 </p>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[420px]">
                   <thead>
-                    <tr className="border-b border-white/10 bg-[#0A0A0A]">
-                      <th className="text-left text-xs font-bold text-white/40 px-4 py-3">RANK</th>
-                      <th className="text-left text-xs font-bold text-white/40 px-4 py-3">WALLET</th>
-                      <th className="text-right text-xs font-bold text-white/40 px-4 py-3">BALANCE</th>
-                      <th className="text-right text-xs font-bold text-white/40 px-4 py-3">SHARE %</th>
+                    <tr className="border-b border-[#2a6b5a] bg-[#0A0A0A]">
+                      <th className="text-left text-xs font-bold text-[#7fa89b] px-4 py-3">RANK</th>
+                      <th className="text-left text-xs font-bold text-[#7fa89b] px-4 py-3">WALLET</th>
+                      <th className="text-right text-xs font-bold text-[#7fa89b] px-4 py-3">BALANCE</th>
+                      <th className="text-right text-xs font-bold text-[#7fa89b] px-4 py-3">SHARE %</th>
                     </tr>
                   </thead>
                   <tbody>
                     {!holdersData
                       ? Array.from({ length: 10 }).map((_, i) => (
-                          <tr key={i} className="border-b border-white/5">
+                          <tr key={i} className="border-b border-[#2a6b5a]/50">
                             <td className="px-4 py-3"><Sk className="h-4 w-8" /></td>
                             <td className="px-4 py-3"><Sk className="h-4 w-28" /></td>
                             <td className="px-4 py-3"><Sk className="h-4 w-24 ml-auto" /></td>
@@ -961,7 +961,7 @@ export default function DashboardPage() {
                       : holdersData.holders.length === 0
                       ? (
                         <tr>
-                          <td colSpan={4} className="px-4 py-8 text-center text-white/40 text-sm font-bold">
+                          <td colSpan={4} className="px-4 py-8 text-center text-[#7fa89b] text-sm font-bold">
                             No holder snapshot available yet — check back soon.
                           </td>
                         </tr>
@@ -969,19 +969,19 @@ export default function DashboardPage() {
                       : holdersData.holders.map((h, i) => (
                           <tr
                             key={h.wallet}
-                            className="border-b border-white/5 hover:bg-[#0A0A0A] transition-colors group"
+                            className="border-b border-[#2a6b5a]/50 hover:bg-[#0A0A0A] transition-colors group"
                           >
-                            <td className="px-4 py-3 font-mono text-sm text-white/40 font-bold">
+                            <td className="px-4 py-3 font-mono text-sm text-[#7fa89b] font-bold">
                               {i + 1}
                             </td>
                             <td className="px-4 py-3">
                               <button
                                 onClick={() => copyWallet(h.wallet)}
-                                className="flex items-center gap-2 font-mono text-sm text-white hover:text-white/40 transition-colors"
+                                className="flex items-center gap-2 font-mono text-sm text-white hover:text-[#7fa89b] transition-colors"
                               >
                                 {truncate(h.wallet)}
                                 {copiedWallet === h.wallet ? (
-                                  <Check className="w-3 h-3 text-emerald-500" />
+                                  <Check className="w-3 h-3 text-[#78d1bd]" />
                                 ) : (
                                   <Copy className="w-3 h-3 opacity-0 group-hover:opacity-50 transition-opacity" />
                                 )}
@@ -992,13 +992,13 @@ export default function DashboardPage() {
                             </td>
                             <td className="px-4 py-3 text-right">
                               <div className="flex items-center justify-end gap-2">
-                                <div className="hidden sm:block w-16 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                                <div className="hidden sm:block w-16 h-1.5 bg-[#2a6b5a] rounded-full overflow-hidden">
                                   <div
                                     className="h-full bg-white rounded-full"
                                     style={{ width: `${Math.min(100, Number(h.percentage))}%` }}
                                   />
                                 </div>
-                                <span className="font-mono text-sm text-white/40 font-bold">
+                                <span className="font-mono text-sm text-[#7fa89b] font-bold">
                                   {Number(h.percentage).toFixed(2)}%
                                 </span>
                               </div>
@@ -1017,11 +1017,11 @@ export default function DashboardPage() {
         ═══════════════════════════════════════════════════════════════════════ */}
         {tab === "history" && (
           <div className="space-y-4">
-            <div className="bg-[#0A0A0A] rounded-xl border border-white/10 overflow-hidden ">
-              <div className="px-4 py-3 border-b border-white/10 flex items-center justify-between">
+            <div className="bg-[#0A0A0A] rounded-xl border border-[#2a6b5a] overflow-hidden ">
+              <div className="px-4 py-3 border-b border-[#2a6b5a] flex items-center justify-between">
                 <div>
                   <h3 className="font-black text-white text-sm">DISTRIBUTION HISTORY</h3>
-                  <p className="text-xs text-white/40 mt-0.5">
+                  <p className="text-xs text-[#7fa89b] mt-0.5">
                     Click a row to expand per-holder payments
                   </p>
                 </div>
@@ -1032,8 +1032,8 @@ export default function DashboardPage() {
                       onClick={() => setHistoryFilter(f)}
                       className={`px-3 py-1.5 text-xs font-black rounded-lg transition-colors border ${
                         historyFilter === f
-                          ? "bg-white/10 text-white border-white/20"
-                          : "text-white/40 border-transparent hover:text-white hover:bg-white/5"
+                          ? "bg-[#2a6b5a] text-white border-white/20"
+                          : "text-[#7fa89b] border-transparent hover:text-white hover:bg-[#0f4a42]"
                       }`}
                     >
                       {f === "all" ? "ALL" : f === "instant" ? "⚡ INSTANT" : "💎 DIAMOND"}
@@ -1045,20 +1045,20 @@ export default function DashboardPage() {
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[720px]">
                   <thead>
-                    <tr className="border-b border-white/10 bg-[#0A0A0A]">
+                    <tr className="border-b border-[#2a6b5a] bg-[#0A0A0A]">
                       <th className="w-10 px-3 py-3" />
-                      <th className="text-left text-xs font-bold text-white/40 px-3 py-3">TYPE</th>
-                      <th className="text-left text-xs font-bold text-white/40 px-4 py-3">ID</th>
-                      <th className="text-left text-xs font-bold text-white/40 px-4 py-3">DATE</th>
-                      <th className="text-right text-xs font-bold text-white/40 px-4 py-3">DISTRIBUTED</th>
-                      <th className="text-right text-xs font-bold text-white/40 px-4 py-3">HOLDERS</th>
-                      <th className="text-center text-xs font-bold text-white/40 px-4 py-3">STATUS</th>
+                      <th className="text-left text-xs font-bold text-[#7fa89b] px-3 py-3">TYPE</th>
+                      <th className="text-left text-xs font-bold text-[#7fa89b] px-4 py-3">ID</th>
+                      <th className="text-left text-xs font-bold text-[#7fa89b] px-4 py-3">DATE</th>
+                      <th className="text-right text-xs font-bold text-[#7fa89b] px-4 py-3">DISTRIBUTED</th>
+                      <th className="text-right text-xs font-bold text-[#7fa89b] px-4 py-3">HOLDERS</th>
+                      <th className="text-center text-xs font-bold text-[#7fa89b] px-4 py-3">STATUS</th>
                     </tr>
                   </thead>
                   <tbody>
                     {loadingDist
                       ? Array.from({ length: ITEMS_PER_PAGE }).map((_, i) => (
-                          <tr key={i} className="border-b border-white/5">
+                          <tr key={i} className="border-b border-[#2a6b5a]/50">
                             {Array.from({ length: 7 }).map((_, j) => (
                               <td key={j} className="px-4 py-3">
                                 <Sk className="h-4 w-full" />
@@ -1075,16 +1075,16 @@ export default function DashboardPage() {
                             <React.Fragment key={`${item.type}-${item.id}`}>
                               {/* Main row */}
                               <tr
-                                className="border-b border-white/5 hover:bg-[#0A0A0A] transition-colors cursor-pointer select-none"
+                                className="border-b border-[#2a6b5a]/50 hover:bg-[#0A0A0A] transition-colors cursor-pointer select-none"
                                 onClick={() =>
                                   isDiamond ? handleExpandDiamond(item.id) : handleExpand(item.id)
                                 }
                               >
                                 <td className="px-3 py-3 text-center">
                                   {isExpanded ? (
-                                    <ChevronUp className="w-4 h-4 text-white/40 mx-auto" />
+                                    <ChevronUp className="w-4 h-4 text-[#7fa89b] mx-auto" />
                                   ) : (
-                                    <ChevronDown className="w-4 h-4 text-white/40 mx-auto" />
+                                    <ChevronDown className="w-4 h-4 text-[#7fa89b] mx-auto" />
                                   )}
                                 </td>
                                 <td className="px-3 py-3">
@@ -1093,7 +1093,7 @@ export default function DashboardPage() {
                                       💎
                                     </span>
                                   ) : (
-                                    <span className="text-xs font-black px-2 py-0.5 rounded bg-white/10 text-white/60 border border-white/10">
+                                    <span className="text-xs font-black px-2 py-0.5 rounded bg-[#2a6b5a] text-[#7fa89b] border border-[#2a6b5a]">
                                       ⚡
                                     </span>
                                   )}
@@ -1101,13 +1101,13 @@ export default function DashboardPage() {
                                 <td className="px-4 py-3 font-mono text-sm text-white font-bold">
                                   #{item.id}
                                 </td>
-                                <td className="px-4 py-3 text-xs text-white/40">
+                                <td className="px-4 py-3 text-xs text-[#7fa89b]">
                                   {fmtDate(item.date)}
                                 </td>
                                 <td className={`px-4 py-3 text-right font-mono text-sm ${isDiamond ? "text-cyan-400" : "text-white"}`}>
-                                  {fmtSol(item.amount)} {isDiamond ? "$CUM" : "$CUM"}
+                                  {fmtSol(item.amount)} {isDiamond ? "HYPE" : "HYPE"}
                                 </td>
-                                <td className="px-4 py-3 text-right font-mono text-sm text-white/40">
+                                <td className="px-4 py-3 text-right font-mono text-sm text-[#7fa89b]">
                                   {item.holderCount}
                                 </td>
                                 <td className="px-4 py-3 text-center">
@@ -1121,10 +1121,10 @@ export default function DashboardPage() {
                               {isExpanded && !isDiamond && (() => {
                                 const detail = distributionDetails[item.id]
                                 return (
-                                  <tr key={`instant-${item.id}-detail`} className="border-b border-white/10">
+                                  <tr key={`instant-${item.id}-detail`} className="border-b border-[#2a6b5a]">
                                     <td colSpan={7} className="bg-[#0A0A0A] px-4 py-4">
                                       {loadingDetail === item.id ? (
-                                        <div className="flex items-center gap-2 text-white/40 text-sm py-2">
+                                        <div className="flex items-center gap-2 text-[#7fa89b] text-sm py-2">
                                           <Loader2 className="w-4 h-4 animate-spin" />
                                           Loading payments...
                                         </div>
@@ -1134,47 +1134,47 @@ export default function DashboardPage() {
                                         </p>
                                       ) : detail ? (
                                         <div>
-                                          <div className="flex flex-wrap items-center gap-4 mb-3 pb-3 border-b border-white/10">
+                                          <div className="flex flex-wrap items-center gap-4 mb-3 pb-3 border-b border-[#2a6b5a]">
                                             {item.claimRoundId && (
-                                              <span className="text-xs font-bold text-white/40">
+                                              <span className="text-xs font-bold text-[#7fa89b]">
                                                 ROUND <span className="text-white">#{item.claimRoundId}</span>
                                               </span>
                                             )}
                                             {item.completedAt && (
-                                              <span className="text-xs font-bold text-white/40">
+                                              <span className="text-xs font-bold text-[#7fa89b]">
                                                 COMPLETED <span className="text-white">{fmtDate(item.completedAt)}</span>
                                               </span>
                                             )}
                                           </div>
                                           {detail.payments.length === 0 ? (
-                                            <p className="text-xs text-white/40">
+                                            <p className="text-xs text-[#7fa89b]">
                                               No payments recorded for this distribution.
                                             </p>
                                           ) : (
                                             <div className="overflow-x-auto">
                                               <table className="w-full min-w-[520px]">
                                                 <thead>
-                                                  <tr className="border-b border-white/10">
-                                                    <th className="text-left text-xs font-bold text-white/40 pb-2 pr-4">WALLET</th>
-                                                    <th className="text-right text-xs font-bold text-white/40 pb-2 px-4">AMOUNT ($CUM)</th>
-                                                    <th className="text-right text-xs font-bold text-white/40 pb-2 px-4">SHARE %</th>
-                                                    <th className="text-center text-xs font-bold text-white/40 pb-2 px-4">STATUS</th>
-                                                    <th className="text-right text-xs font-bold text-white/40 pb-2 pl-4">TX</th>
+                                                  <tr className="border-b border-[#2a6b5a]">
+                                                    <th className="text-left text-xs font-bold text-[#7fa89b] pb-2 pr-4">WALLET</th>
+                                                    <th className="text-right text-xs font-bold text-[#7fa89b] pb-2 px-4">AMOUNT (HYPE)</th>
+                                                    <th className="text-right text-xs font-bold text-[#7fa89b] pb-2 px-4">SHARE %</th>
+                                                    <th className="text-center text-xs font-bold text-[#7fa89b] pb-2 px-4">STATUS</th>
+                                                    <th className="text-right text-xs font-bold text-[#7fa89b] pb-2 pl-4">TX</th>
                                                   </tr>
                                                 </thead>
                                                 <tbody>
                                                   {detail.payments.map((p: ApiPayment, idx: number) => {
                                                     const pBadge = distStatusBadge(p.status)
                                                     return (
-                                                      <tr key={idx} className="border-b border-white/5">
+                                                      <tr key={idx} className="border-b border-[#2a6b5a]/50">
                                                         <td className="py-2 pr-4">
                                                           <button
                                                             onClick={(e) => { e.stopPropagation(); copyWallet(p.wallet) }}
-                                                            className="flex items-center gap-1.5 font-mono text-xs text-white hover:text-white/40 transition-colors"
+                                                            className="flex items-center gap-1.5 font-mono text-xs text-white hover:text-[#7fa89b] transition-colors"
                                                           >
                                                             {truncate(p.wallet)}
                                                             {copiedWallet === p.wallet ? (
-                                                              <Check className="w-3 h-3 text-emerald-500" />
+                                                              <Check className="w-3 h-3 text-[#78d1bd]" />
                                                             ) : (
                                                               <Copy className="w-3 h-3 opacity-40" />
                                                             )}
@@ -1183,7 +1183,7 @@ export default function DashboardPage() {
                                                         <td className="py-2 px-4 text-right font-mono text-xs text-white">
                                                           {fmtSol(p.amountSol)}
                                                         </td>
-                                                        <td className="py-2 px-4 text-right font-mono text-xs text-white/40">
+                                                        <td className="py-2 px-4 text-right font-mono text-xs text-[#7fa89b]">
                                                           {Number(p.percentage).toFixed(4)}%
                                                         </td>
                                                         <td className="py-2 px-4 text-center">
@@ -1198,13 +1198,13 @@ export default function DashboardPage() {
                                                               target="_blank"
                                                               rel="noopener noreferrer"
                                                               onClick={(e) => e.stopPropagation()}
-                                                              className="inline-flex items-center gap-1 text-xs font-mono text-white/40 hover:text-white transition-colors"
+                                                              className="inline-flex items-center gap-1 text-xs font-mono text-[#7fa89b] hover:text-white transition-colors"
                                                             >
                                                               {truncate(p.txSignature)}
                                                               <ExternalLink className="w-3 h-3" />
                                                             </a>
                                                           ) : (
-                                                            <span className="text-xs text-white/40">—</span>
+                                                            <span className="text-xs text-[#7fa89b]">—</span>
                                                           )}
                                                         </td>
                                                       </tr>
@@ -1225,10 +1225,10 @@ export default function DashboardPage() {
                               {isExpanded && isDiamond && (() => {
                                 const detail = diamondDistDetails[diamondKey]
                                 return (
-                                  <tr key={`diamond-${item.id}-detail`} className="border-b border-white/10">
+                                  <tr key={`diamond-${item.id}-detail`} className="border-b border-[#2a6b5a]">
                                     <td colSpan={7} className="bg-[#0A0A0A] px-4 py-4">
                                       {loadingDetail === item.id ? (
-                                        <div className="flex items-center gap-2 text-white/40 text-sm py-2">
+                                        <div className="flex items-center gap-2 text-[#7fa89b] text-sm py-2">
                                           <Loader2 className="w-4 h-4 animate-spin" />
                                           Loading payments...
                                         </div>
@@ -1238,45 +1238,45 @@ export default function DashboardPage() {
                                         </p>
                                       ) : detail ? (
                                         <div>
-                                          <div className="flex flex-wrap items-center gap-4 mb-3 pb-3 border-b border-white/10">
+                                          <div className="flex flex-wrap items-center gap-4 mb-3 pb-3 border-b border-[#2a6b5a]">
                                             <span className="text-xs font-black px-2 py-0.5 rounded bg-cyan-900/30 text-cyan-400 border border-cyan-500/20">
                                               💎 DIAMOND HANDS
                                             </span>
                                             {item.completedAt && (
-                                              <span className="text-xs font-bold text-white/40">
+                                              <span className="text-xs font-bold text-[#7fa89b]">
                                                 COMPLETED <span className="text-white">{fmtDate(item.completedAt)}</span>
                                               </span>
                                             )}
                                           </div>
                                           {detail.payments.length === 0 ? (
-                                            <p className="text-xs text-white/40">
+                                            <p className="text-xs text-[#7fa89b]">
                                               No payments recorded for this distribution.
                                             </p>
                                           ) : (
                                             <div className="overflow-x-auto">
                                               <table className="w-full min-w-[520px]">
                                                 <thead>
-                                                  <tr className="border-b border-white/10">
-                                                    <th className="text-left text-xs font-bold text-white/40 pb-2 pr-4">WALLET</th>
-                                                    <th className="text-right text-xs font-bold text-white/40 pb-2 px-4">AMOUNT ($CUM)</th>
-                                                    <th className="text-right text-xs font-bold text-white/40 pb-2 px-4">SHARE %</th>
-                                                    <th className="text-center text-xs font-bold text-white/40 pb-2 px-4">STATUS</th>
-                                                    <th className="text-right text-xs font-bold text-white/40 pb-2 pl-4">TX</th>
+                                                  <tr className="border-b border-[#2a6b5a]">
+                                                    <th className="text-left text-xs font-bold text-[#7fa89b] pb-2 pr-4">WALLET</th>
+                                                    <th className="text-right text-xs font-bold text-[#7fa89b] pb-2 px-4">AMOUNT (HYPE)</th>
+                                                    <th className="text-right text-xs font-bold text-[#7fa89b] pb-2 px-4">SHARE %</th>
+                                                    <th className="text-center text-xs font-bold text-[#7fa89b] pb-2 px-4">STATUS</th>
+                                                    <th className="text-right text-xs font-bold text-[#7fa89b] pb-2 pl-4">TX</th>
                                                   </tr>
                                                 </thead>
                                                 <tbody>
                                                   {detail.payments.map((p: ApiDiamondPayment, idx: number) => {
                                                     const pBadge = distStatusBadge(p.status)
                                                     return (
-                                                      <tr key={idx} className="border-b border-white/5">
+                                                      <tr key={idx} className="border-b border-[#2a6b5a]/50">
                                                         <td className="py-2 pr-4">
                                                           <button
                                                             onClick={(e) => { e.stopPropagation(); copyWallet(p.wallet) }}
-                                                            className="flex items-center gap-1.5 font-mono text-xs text-white hover:text-white/40 transition-colors"
+                                                            className="flex items-center gap-1.5 font-mono text-xs text-white hover:text-[#7fa89b] transition-colors"
                                                           >
                                                             {truncate(p.wallet)}
                                                             {copiedWallet === p.wallet ? (
-                                                              <Check className="w-3 h-3 text-emerald-500" />
+                                                              <Check className="w-3 h-3 text-[#78d1bd]" />
                                                             ) : (
                                                               <Copy className="w-3 h-3 opacity-40" />
                                                             )}
@@ -1285,7 +1285,7 @@ export default function DashboardPage() {
                                                         <td className="py-2 px-4 text-right font-mono text-xs text-cyan-400">
                                                           {fmtSol(p.amountTokens)}
                                                         </td>
-                                                        <td className="py-2 px-4 text-right font-mono text-xs text-white/40">
+                                                        <td className="py-2 px-4 text-right font-mono text-xs text-[#7fa89b]">
                                                           {Number(p.percentage).toFixed(4)}%
                                                         </td>
                                                         <td className="py-2 px-4 text-center">
@@ -1300,13 +1300,13 @@ export default function DashboardPage() {
                                                               target="_blank"
                                                               rel="noopener noreferrer"
                                                               onClick={(e) => e.stopPropagation()}
-                                                              className="inline-flex items-center gap-1 text-xs font-mono text-white/40 hover:text-white transition-colors"
+                                                              className="inline-flex items-center gap-1 text-xs font-mono text-[#7fa89b] hover:text-white transition-colors"
                                                             >
                                                               {truncate(p.txSignature)}
                                                               <ExternalLink className="w-3 h-3" />
                                                             </a>
                                                           ) : (
-                                                            <span className="text-xs text-white/40">—</span>
+                                                            <span className="text-xs text-[#7fa89b]">—</span>
                                                           )}
                                                         </td>
                                                       </tr>
@@ -1331,15 +1331,15 @@ export default function DashboardPage() {
 
               {/* Pagination — only for instant filter */}
               {historyFilter === "instant" && totalPages > 1 && (
-                <div className="px-4 py-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
-                  <span className="text-xs font-bold text-white/40">
+                <div className="px-4 py-3 border-t border-[#2a6b5a] flex flex-wrap items-center justify-between gap-3">
+                  <span className="text-xs font-bold text-[#7fa89b]">
                     PAGE {currentPage} of {totalPages} · {totalDist} total distributions
                   </span>
                   <div className="flex items-center gap-1.5">
                     <button
                       onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                       disabled={currentPage === 1}
-                      className="px-3 py-1.5 bg-[#0A0A0A] rounded-lg text-white text-xs font-bold disabled:opacity-30 hover:bg-white hover:text-white transition-colors border border-white/10"
+                      className="px-3 py-1.5 bg-[#0A0A0A] rounded-lg text-white text-xs font-bold disabled:opacity-30 hover:bg-white hover:text-white transition-colors border border-[#2a6b5a]"
                     >
                       ← PREV
                     </button>
@@ -1350,7 +1350,7 @@ export default function DashboardPage() {
                         className={`w-8 h-8 rounded-lg text-xs font-black transition-colors border ${
                           pg === currentPage
                             ? "bg-white text-white border-[#8B7FA0]/50 "
-                            : "bg-[#0A0A0A] text-white border-white/10 hover:bg-white hover:text-white hover:border-[#8B7FA0]/50"
+                            : "bg-[#0A0A0A] text-white border-[#2a6b5a] hover:bg-white hover:text-white hover:border-[#8B7FA0]/50"
                         }`}
                       >
                         {pg}
@@ -1359,7 +1359,7 @@ export default function DashboardPage() {
                     <button
                       onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                       disabled={currentPage === totalPages}
-                      className="px-3 py-1.5 bg-[#0A0A0A] rounded-lg text-white text-xs font-bold disabled:opacity-30 hover:bg-white hover:text-white transition-colors border border-white/10"
+                      className="px-3 py-1.5 bg-[#0A0A0A] rounded-lg text-white text-xs font-bold disabled:opacity-30 hover:bg-white hover:text-white transition-colors border border-[#2a6b5a]"
                     >
                       NEXT →
                     </button>
@@ -1372,20 +1372,20 @@ export default function DashboardPage() {
       </main>
 
       {/* ── Footer ────────────────────────────────────────────────────────────── */}
-      <footer className="bg-black border-t border-white/10 mt-6">
+      <footer className="bg-[#072722] border-t border-[#2a6b5a] mt-6">
         <div className="max-w-7xl mx-auto px-4 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <Image
-              src="/cumbank-logo.jpg"
-              alt={"CUMBANK"}
+              src="/hypebank-logo.jpg"
+              alt={"HYPEBANK"}
               width={24}
               height={24}
               className="rounded"
             />
-            <p className="text-white/50 text-sm font-bold">CUMBANK © 2026 · BUILT ON SOLANA</p>
+            <p className="text-[#7fa89b] text-sm font-bold">HYPEBANK © 2026 · BUILT ON SOLANA</p>
           </div>
           <div className="flex items-center gap-4">
-            <a href="/dashboard" className="text-white/50 text-sm font-bold hover:text-white transition-colors">
+            <a href="/dashboard" className="text-[#7fa89b] text-sm font-bold hover:text-white transition-colors">
               DASHBOARD
             </a>
             {config.twitterUrl && (
@@ -1393,7 +1393,7 @@ export default function DashboardPage() {
                 href={config.twitterUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-white/50 text-sm font-bold hover:text-white transition-colors"
+                className="flex items-center gap-1.5 text-[#7fa89b] text-sm font-bold hover:text-white transition-colors"
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                 FOLLOW

@@ -1,21 +1,21 @@
 import type { Metadata } from 'next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
+import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import { config } from '@/lib/config'
 
-const inter = Inter({
+const geist = Geist({
   subsets: ["latin"],
-  variable: '--font-inter'
+  variable: '--font-geist'
 })
 
-const jetbrainsMono = JetBrains_Mono({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
-  variable: '--font-jetbrains-mono'
+  variable: '--font-geist-mono'
 })
 
 export const metadata: Metadata = {
-  title: `CUMBANK — Deposit Today. Invest in Tomorrow.`,
+  title: `HYPEBANK — Deposit Today. Earn Tomorrow.`,
   description: config.tokenDescription,
   icons: {
     icon: [
@@ -26,15 +26,15 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   openGraph: {
-    title: 'CUMBANK — Deposit Today. Invest in Tomorrow.',
-    description: 'Hold $CUMBANK, earn $CUM tokens automatically. 50% instant + 50% diamond hands. The bank is always open. 🏦',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 1200, alt: 'CUMBANK' }],
+    title: 'HYPEBANK — Deposit Today. Earn Tomorrow.',
+    description: 'Hold $HYPEBANK, earn HYPE tokens automatically on Solana. 50% instant + 50% diamond hands. The vault is always open. 🏦',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 1200, alt: 'HYPEBANK' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'CUMBANK — Deposit Today. Invest in Tomorrow.',
-    description: 'Hold $CUMBANK, earn $CUM tokens automatically. 🏦',
+    title: 'HYPEBANK — Deposit Today. Earn Tomorrow.',
+    description: 'Hold $HYPEBANK, earn HYPE tokens automatically on Solana. 🏦',
     images: ['/og-image.jpg'],
   },
 }
@@ -45,8 +45,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="font-sans antialiased bg-black text-white">
+    <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
+      <body className="font-sans antialiased bg-background text-foreground">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

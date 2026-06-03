@@ -4,34 +4,35 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #000000;
-  --foreground: #FFFFFF;
-  --card: #0A0A0A;
-  --card-foreground: #FFFFFF;
-  --card-light: #111111;
-  --card-light-foreground: #FFFFFF;
-  --popover: #0A0A0A;
-  --popover-foreground: #FFFFFF;
-  --primary: #FFFFFF;
-  --primary-foreground: #000000;
-  --secondary: #111111;
-  --secondary-foreground: #FFFFFF;
-  --muted: #222222;
-  --muted-foreground: #888888;
-  --accent: #FFFFFF;
-  --accent-foreground: #000000;
-  --highlight: #FFFFFF;
-  --destructive: #EF4444;
+  /* HypeBank — Hyperliquid teal/green theme */
+  --background: #072722;
+  --foreground: #e8f5f3;
+  --card: #0f4a42;
+  --card-foreground: #e8f5f3;
+  --card-light: #1a5c50;
+  --card-light-foreground: #e8f5f3;
+  --popover: #0f4a42;
+  --popover-foreground: #e8f5f3;
+  --primary: #78d1bd;
+  --primary-foreground: #072722;
+  --secondary: #418375;
+  --secondary-foreground: #e8f5f3;
+  --muted: #2a6b5a;
+  --muted-foreground: #7fa89b;
+  --accent: #78d1bd;
+  --accent-foreground: #072722;
+  --highlight: #78d1bd;
+  --destructive: #ff4d4d;
   --destructive-foreground: #FFFFFF;
-  --border: #222222;
-  --input: #111111;
-  --ring: #FFFFFF;
-  --radius: 0px;
+  --border: #2a6b5a;
+  --input: #0f4a42;
+  --ring: #78d1bd;
+  --radius: 0.625rem;
 }
 
 @theme inline {
-  --font-sans: 'Inter', 'Inter Fallback', sans-serif;
-  --font-mono: 'JetBrains Mono', 'JetBrains Mono Fallback', monospace;
+  --font-sans: 'Geist', 'Geist Fallback', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback', 'JetBrains Mono', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -51,10 +52,10 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --radius-sm: 0px;
-  --radius-md: 0px;
-  --radius-lg: 0px;
-  --radius-xl: 0px;
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: calc(var(--radius));
+  --radius-lg: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 8px);
 }
 
 @layer base {
@@ -66,23 +67,23 @@
   }
 }
 
-/* Custom scrollbar — dark theme */
+/* Custom scrollbar — teal theme */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: #072722;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333333;
-  border: 2px solid #000000;
+  background: #2a6b5a;
+  border: 2px solid #072722;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555555;
+  background: #418375;
 }
 
 /* Marquee animation */
