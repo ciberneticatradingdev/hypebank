@@ -215,20 +215,36 @@ export async function claimCreatorFees(): Promise<ClaimResult | null> {
     return await recordClaim(connection, balanceBefore, txSignature);
   } catch (err) {
     const errorMessage = err instanceof Error ? err.message : String(err);
-    logger.error('Fee claim failed (dual), trying AMM-only fallback', { error: errorMessage });
+    logger.error('Fee claim failed (dual), trying individual fallbacks', { error: errorMessage });
 
-    // Fallback: try AMM-only claim if dual fails
+    const creatorWsolAtaFallback = getAssociatedTokenAddressSync(config.wsolMint, config.walletPublicKey);
+
+    // Fallback 1: try AMM-only claim
     try {
-      return await claimAmmOnly(connection,
-        getAssociatedTokenAddressSync(config.wsolMint, config.walletPublicKey),
+      const ammResult = await claimAmmOnly(connection,
+        creatorWsolAtaFallback,
         BigInt(await connection.getBalance(config.walletPublicKey, 'confirmed'))
       );
-    } catch (fallbackErr) {
-      const fallbackMsg = fallbackErr instanceof Error ? fallbackErr.message : String(fallbackErr);
-      logger.error('AMM-only fallback also failed', { error: fallbackMsg });
-      await logEvent('claim_failed', `Fee claim failed: ${fallbackMsg}`, { error: fallbackMsg });
-      return null;
+      if (ammResult) return ammResult;
+    } catch (ammErr) {
+      const ammMsg = ammErr instanceof Error ? ammErr.message : String(ammErr);
+      logger.error('AMM-only fallback failed', { error: ammMsg });
     }
+
+    // Fallback 2: try PumpSwap-only (legacy/pre-bond) claim
+    try {
+      const pumpswapResult = await claimPumpswapOnly(connection,
+        creatorWsolAtaFallback,
+        BigInt(await connection.getBalance(config.walletPublicKey, 'confirmed'))
+      );
+      if (pumpswapResult) return pumpswapResult;
+    } catch (pumpswapErr) {
+      const pumpswapMsg = pumpswapErr instanceof Error ? pumpswapErr.message : String(pumpswapErr);
+      logger.error('PumpSwap-only fallback also failed', { error: pumpswapMsg });
+      await logEvent('claim_failed', `All claim methods failed: ${pumpswapMsg}`, { error: pumpswapMsg });
+    }
+
+    return null;
   }
 }
 
@@ -291,6 +307,69 @@ async function claimAmmOnly(
     lastValidBlockHeight,
   }, 'confirmed');
   logger.info('AMM claim confirmed', { signature: txSignature });
+
+  return await recordClaim(connection, balanceBefore, txSignature);
+}
+
+/**
+ * Fallback: claim only from PumpSwap (pre-bond, legacy) if dual claim fails.
+ */
+async function claimPumpswapOnly(
+  connection: ReturnType<typeof getConnection>,
+  creatorWsolAta: PublicKey,
+  balanceBefore: bigint
+): Promise<ClaimResult | null> {
+  logger.info('Attempting PumpSwap-only (legacy) fee claim...');
+
+  const createAtaIx = createAssociatedTokenAccountIdempotentInstruction(
+    config.walletPublicKey,
+    creatorWsolAta,
+    config.walletPublicKey,
+    config.wsolMint
+  );
+
+  const collectLegacyIx = buildCollectCreatorFeeV2();
+
+  const closeAtaIx = createCloseAccountInstruction(
+    creatorWsolAta,
+    config.walletPublicKey,
+    config.walletPublicKey
+  );
+
+  const { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash('confirmed');
+  const messageV0 = new TransactionMessage({
+    payerKey: config.walletPublicKey,
+    recentBlockhash: blockhash,
+    instructions: [createAtaIx, collectLegacyIx, closeAtaIx],
+  }).compileToV0Message();
+
+  const tx = new VersionedTransaction(messageV0);
+  tx.sign([config.walletKeypair]);
+
+  const sim = await connection.simulateTransaction(tx);
+  if (sim.value.err) {
+    const noFee = sim.value.logs?.some((l: string) =>
+      l.includes('No creator fee to collect') || l.includes('No creator fee')
+    );
+    if (noFee) {
+      logger.info('No PumpSwap creator fees to collect');
+      return null;
+    }
+    throw new Error(`PumpSwap simulation failed: ${JSON.stringify(sim.value.err)}`);
+  }
+
+  const txSignature = await connection.sendTransaction(tx, {
+    skipPreflight: true,
+    maxRetries: 3,
+  });
+  logger.info('PumpSwap claim sent', { signature: txSignature });
+
+  await connection.confirmTransaction({
+    signature: txSignature,
+    blockhash,
+    lastValidBlockHeight,
+  }, 'confirmed');
+  logger.info('PumpSwap claim confirmed', { signature: txSignature });
 
   return await recordClaim(connection, balanceBefore, txSignature);
 }
