@@ -175,7 +175,7 @@ export default function TokenPage() {
             <div className="absolute inset-0 bg-[#072722]/70 rounded-xl" />
             <div className="relative z-10">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-none mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-                THE BANK<br />IS ALWAYS OPEN 🏦
+                HOLD $HYPEBANK<br />EARN $HYPE
               </h2>
               <p className="text-white/70 text-sm max-w-md mb-5 drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
                 Every 90 seconds, trading fees are claimed and swapped to HYPE tokens. 50% distributed instantly to all holders. 50% reserved for diamond hands who hold 1h+ without selling.
